@@ -21,23 +21,23 @@ def recurrence_prob(baseline_survival: float, lp: float) -> float:
 
 st.title("Optic Neuritis Recurrence Risk Calculator")
 
-sex = st.selectbox("Sex", ["male", "female"])
-onfel = st.selectbox("History of fellow-eye optic neuritis", ["no", "yes"])
+sex = st.selectbox("Sex", ["Male", "Female"])
+onfel = st.selectbox("History of Fellow-Eye Optic Neuritis", ["No", "Yes"])
 trt = st.selectbox(
-    "Treatment regimen",
+    "Treatment Regimen",
     [
-        "high-dose intravenous methylprednisolone",
-        "low-dose oral prednisone",
-        "No active corticosteroid"
+        "High-Dose Intravenous Methylprednisolone",
+        "Low-Dose Oral Prednisone",
+        "No Active Corticosteroid"
     ]
 )
-disc = st.selectbox("Optic disc in affected eye", ["normal", "edema"])
+disc = st.selectbox("Optic Disc in Affected Eye", ["Normal", "Edema"])
 
-female = 1 if sex == "female" else 0
-onfel_yes = 1 if onfel == "yes" else 0
-low_dose = 1 if trt == "low-dose oral prednisone" else 0
-placebo = 1 if trt == "No active corticosteroid" else 0
-edema = 1 if disc == "edema" else 0
+female = 1 if sex == "Female" else 0
+onfel_yes = 1 if onfel == "Yes" else 0
+low_dose = 1 if trt == "Low-Dose Oral Prednisone" else 0
+placebo = 1 if trt == "No Active Corticosteroid" else 0
+edema = 1 if disc == "Edema" else 0
 
 lp = 0.0
 lp += BETA_FEMALE * female
@@ -51,15 +51,11 @@ risk_1 = recurrence_prob(S0_1, lp)
 risk_3 = recurrence_prob(S0_3, lp)
 risk_5 = recurrence_prob(S0_5, lp)
 
-st.subheader("Predicted recurrence risk")
+st.subheader("Predicted Recurrence Risk")
 c1, c2, c3 = st.columns(3)
-c1.metric("1 year", f"{risk_1:.1%}")
-c2.metric("3 years", f"{risk_3:.1%}")
-c3.metric("5 years", f"{risk_5:.1%}")
+c1.metric("1 Year", f"{risk_1:.1%}")
+c2.metric("3 Years", f"{risk_3:.1%}")
+c3.metric("5 Years", f"{risk_5:.1%}")
 
 st.divider()
-st.write("Linear predictor:", round(lp, 4))
-
-st.caption(
-    "‘No active corticosteroid’ corresponds to the placebo arm in the ONTT development cohort."
-)
+st.write("Linear Predictor:", round(lp, 4))
