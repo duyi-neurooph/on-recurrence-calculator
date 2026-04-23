@@ -20,7 +20,7 @@ def recurrence_prob(baseline_survival: float, lp: float) -> float:
     return 1 - (baseline_survival ** math.exp(lp))
 
 st.title("Optic Neuritis Recurrence Risk Calculator")
-st.caption("Final no-age Andersen–Gill model")
+
 
 sex = st.selectbox("Sex", ["male", "female"])
 onfel = st.selectbox("History of fellow-eye optic neuritis", ["no", "yes"])
@@ -29,7 +29,7 @@ trt = st.selectbox(
     [
         "high-dose intravenous methylprednisolone",
         "low-dose oral prednisone",
-        "No active corticosteroid (ONTT placebo arm)"
+        "No active corticosteroid"
     ]
 )
 disc = st.selectbox("Optic disc in affected eye", ["normal", "edema"])
@@ -61,7 +61,4 @@ c3.metric("5 years", f"{risk_5:.1%}")
 st.divider()
 st.write("Linear predictor:", round(lp, 4))
 
-st.warning(
-    
-    "The placebo-equivalent branch corresponds to the ONTT development cohort."
-)
+
