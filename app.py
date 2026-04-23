@@ -21,7 +21,6 @@ def recurrence_prob(baseline_survival: float, lp: float) -> float:
 
 st.title("Optic Neuritis Recurrence Risk Calculator")
 
-
 sex = st.selectbox("Sex", ["male", "female"])
 onfel = st.selectbox("History of fellow-eye optic neuritis", ["no", "yes"])
 trt = st.selectbox(
@@ -37,7 +36,7 @@ disc = st.selectbox("Optic disc in affected eye", ["normal", "edema"])
 female = 1 if sex == "female" else 0
 onfel_yes = 1 if onfel == "yes" else 0
 low_dose = 1 if trt == "low-dose oral prednisone" else 0
-placebo = 1 if trt == "No active corticosteroid (ONTT placebo arm)" else 0
+placebo = 1 if trt == "No active corticosteroid" else 0
 edema = 1 if disc == "edema" else 0
 
 lp = 0.0
@@ -61,4 +60,6 @@ c3.metric("5 years", f"{risk_5:.1%}")
 st.divider()
 st.write("Linear predictor:", round(lp, 4))
 
-
+st.caption(
+    "‘No active corticosteroid’ corresponds to the placebo arm in the ONTT development cohort."
+)
