@@ -62,6 +62,6 @@ st.divider()
 st.write("Linear predictor:", round(lp, 4))
 
 st.warning(
-    "This calculator is derived from the final no-age Andersen–Gill model. "
+    
     "The placebo-equivalent branch corresponds to the ONTT development cohort."
 )
